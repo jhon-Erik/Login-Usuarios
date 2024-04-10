@@ -1,6 +1,6 @@
 import { UserRow } from "./UserRow"
 
-export const UsersList =({users =[]})=> {
+export const UsersList =({handlerRemoveUser,users =[]})=> {
     return (
           <table className="table table-hover table-striped">
             <thead>
@@ -16,10 +16,11 @@ export const UsersList =({users =[]})=> {
                     {
                     users.map(({id,username,email})=>(
                        <UserRow 
-                       key={id}q
+                       key={id}
                        id={id} 
                        username={username}
-                       email={email}/> 
+                       email={email}
+                       handlerRemoveUser = {handlerRemoveUser} /> 
                     ))
                     } 
             </tbody>

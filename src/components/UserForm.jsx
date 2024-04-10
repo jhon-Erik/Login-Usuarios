@@ -8,7 +8,7 @@ import { useState } from "react";
       }
 
 
-export const UserForm =()=>{
+export const UserForm =({handlerAddUser})=>{
    
    const [userForm, setUserForm] = useState(initialUserForm);
 
@@ -23,10 +23,25 @@ export const UserForm =()=>{
         [name]: value,
       });
    }
+
+   const onSubmit =(event) =>{
+       event.preventDefault();
+       if(!username || !password || !email){
+         alert('debe completar los campos del formulario')
+         
+         return;
+       }
+       
+      // console.log(userForm);
+
+       //guardar el userForm en el listado de usuarios
+       handlerAddUser(userForm)
+       setUserForm(initialUserForm);
+   }
   
   return (
       <>
-         <form>
+         <form onSubmit={onSubmit}>
             <input 
                  className="form-control my-3 w-75" 
                  placeholder="Username"
